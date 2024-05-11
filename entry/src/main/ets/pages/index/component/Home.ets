@@ -1,18 +1,17 @@
-import router from '@ohos.router';
+import router from '@ohos.router'
 
-@Entry
 @Component
-struct Index {
+export struct Home{
   @State message: string = 'Hello World'
 
-  build() {
+  build(){
     Column() {
       Text(this.message)
         .fontSize(40)
         .fontWeight(FontWeight.Bold)
       Button('关于我们').onClick((event: ClickEvent) => {
         router.pushUrl({
-          url: 'pages/about'
+          url: 'pages/about/about'
         }, router.RouterMode.Single)
       })
       // Row(){
@@ -70,7 +69,8 @@ struct Index {
       // }.width('100%')
 
     }
-    .width('100%').alignItems(HorizontalAlign.Start)
-
+    .width('100%')
+    .height('100%')
+    .alignItems(HorizontalAlign.Start)
   }
 }
