@@ -1,10 +1,11 @@
 import router from '@ohos.router'
 
+@Preview
 @Component
-export struct Home{
+export struct Home {
   @State message: string = 'Hello World'
 
-  build(){
+  build() {
     Column() {
       Text(this.message)
         .fontSize(40)
@@ -45,6 +46,7 @@ export struct Home{
           .id('text1')
         }.id('cont1')
       }.width('100%')
+      .height(50)
 
       // RelativeContainer() {
       //   Row()
@@ -67,6 +69,15 @@ export struct Home{
       //     })
       //     .id("row2")
       // }.width('100%')
+
+      Row() {
+      }.height(10).width('100%')
+      .linearGradient({ angle: 90, repeating: false, colors: [[0x1677FF, 0], [0xFFFFFF, 0.5], [0xFF0000, 1]] })
+
+      Row() {
+      }.height(10).width('100%')
+      .linearGradient({ angle: 90, repeating: false, colors: [[0x1677FF, 0], [0xFFFFFF, 1]] })
+      .margin({ top: 10 })
 
     }
     .width('100%')
