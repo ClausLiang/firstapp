@@ -1,4 +1,5 @@
 import router from '@ohos.router'
+import { CommonDialog } from '../../../commonComponents/CommonDialog'
 
 @Preview
 @Component
@@ -65,9 +66,67 @@ export struct Home {
         Text('小文字').fontSize(12)
       }
 
+      Text('长按：')
+      Button('长按该按钮')
+        .onClick(() => {
+          console.log('发生了点击')
+        })
+        .gesture(
+          LongPressGesture()
+            .onAction((event: GestureEvent) => {
+              console.log('发生了长按')
+              let controller: CustomDialogController
+              controller = new CustomDialogController({
+                builder: myMenu({}),
+                customStyle: true,
+              })
+              controller.open()
+            })
+        )
     }
     .width('100%')
     .height('100%')
     .alignItems(HorizontalAlign.Start)
+  }
+}
+
+@CustomDialog
+struct myMenu {
+  dialogController: CustomDialogController
+  declare appId: string
+  deleteApp?: (id: string) => void
+
+  build() {
+    Column() {
+      Row() {
+        Image($r('app.media.icon_menu_edit')).width(14).height(14).margin({ left: 14 })
+        Text('编辑').margin({ left: 5 })
+      }.height(37)
+      .onClick(() => {
+      })
+
+      Row() {
+        Image($r('app.media.icon_menu_delete')).width(14).height(14).margin({ left: 14 })
+        Text('删除').margin({ left: 5 })
+      }.height(37)
+      .onClick(() => {
+        this.dialogController.close()
+        let dialogController: CustomDialogController
+        dialogController = new CustomDialogController({
+          builder: CommonDialog({
+            content: '确定要删除该应用吗？',
+            leftText: '我再想想',
+            rightListener: () => {
+              dialogController.close()
+              if (this.deleteApp) {
+                this.deleteApp(this.appId)
+              }
+            }
+          }),
+          customStyle: true,
+        })
+        dialogController.open()
+      })
+    }.backgroundColor('#fff').borderRadius(5).width(115).alignItems(HorizontalAlign.Start)
   }
 }
