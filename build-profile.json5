@@ -22,6 +22,10 @@
           ]
         }
       ]
+    },
+    {
+      "name": "common_lib",
+      "srcPath": "./common_lib",
     }
   ]
 }
