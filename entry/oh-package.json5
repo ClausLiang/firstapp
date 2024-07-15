@@ -5,6 +5,8 @@
   "main": "",
   "author": "",
   "license": "",
-  "dependencies": {}
+  "dependencies": {
+    '@app/common_lib': 'file:../common_lib'
+  }
 }
 

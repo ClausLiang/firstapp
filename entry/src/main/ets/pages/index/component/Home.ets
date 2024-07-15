@@ -1,5 +1,5 @@
 import router from '@ohos.router'
-import { CommonDialog } from '../../../commonComponents/CommonDialog'
+import { CommonDialog } from '@app/common_lib'
 
 @Preview
 @Component
